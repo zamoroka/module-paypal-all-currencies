@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="zamoroka_paypalallcurrencies" translate="label" type="text" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>PayPal All Currencies</label>
+            <tab>sales</tab>
+            <resource>Zamoroka_PayPalAllCurrencies::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>PayPal All Currencies</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>is module enabled</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="paypalcurrency" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PayPal Currency</label>
+                    <comment>your PayPal account currency</comment>
+                    <source_model>Zamoroka\PayPalAllCurrencies\Model\Config\PayPalCurrencies</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

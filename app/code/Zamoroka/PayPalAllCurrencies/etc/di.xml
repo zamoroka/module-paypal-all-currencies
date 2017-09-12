@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceAbstract">
+        <arguments>
+            <argument name="curlObject" xsi:type="object">\Magento\Framework\HTTP\Client\Curl</argument>
+            <argument name="storeManagerObject" xsi:type="object">\Magento\Store\Model\StoreManagerInterface</argument>
+            <argument name="helperObject" xsi:type="object">Zamoroka\PayPalAllCurrencies\Helper\Data</argument>
+        </arguments>
+    </type>
+</config>

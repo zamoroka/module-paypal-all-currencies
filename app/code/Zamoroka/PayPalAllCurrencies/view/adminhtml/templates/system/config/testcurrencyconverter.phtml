@@ -1,0 +1,51 @@
+<?php /* @var $block \Zamoroka\PayPalAllCurrencies\Block\System\Config\TestCurrencyConverter */ ?>
+
+<script>
+    require([
+        'jquery',
+        'prototype'
+    ], function (jQuery) {
+
+        var testBlock = jQuery('#test_currency_service');
+
+        jQuery('#zamoroka_paypalallcurrencies_general_currencyservice').change(function () {
+            var params = {
+                serviceId: this.value,
+                payPalCurrency: jQuery('#zamoroka_paypalallcurrencies_general_paypalcurrency').val()
+            };
+
+            new Ajax.Request('<?php echo $block->getAjaxUrl() ?>', {
+                parameters: params,
+                loaderArea: false,
+                asynchronous: true,
+                onCreate: function () {
+                    testBlock.find('.tested').hide();
+                    testBlock.find('.processing').show();
+                    jQuery('#test_currency_service_message').text('');
+                },
+                onSuccess: function (response) {
+                    testBlock.find('.processing').hide();
+
+                    var json = response.responseJSON;
+                    var resultText = '';
+
+                    if (response.status > 200) {
+                        resultText = response.statusText;
+                    } else {
+                        resultText = json.info;
+                        testBlock.find('.tested').show();
+                    }
+                    jQuery('#test_currency_service_message').text(resultText);
+                }
+            });
+        });
+    });
+</script>
+
+<span class="collect-indicator" id="test_currency_service">
+    <img class="processing" hidden="hidden" alt="Collecting" style="margin:0 5px"
+         src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="tested" hidden="hidden" alt="Tested" style="margin:-3px 5px"
+         src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <span id="test_currency_service_message"></span>
+</span>

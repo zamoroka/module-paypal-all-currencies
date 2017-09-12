@@ -75,10 +75,11 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param null|int $storeId
      * @return string
      */
-    public function getPayPalCurrency()
+    public function getPayPalCurrency($storeId = null)
     {
-        return $this->getGeneralConfig('paypalcurrency');
+        return $this->getGeneralConfig('paypalcurrency', $storeId);
     }
 }

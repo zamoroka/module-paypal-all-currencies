@@ -5,6 +5,7 @@
             <general>
                 <enabled>1</enabled>
                 <paypalcurrency>USD</paypalcurrency>
+                <currencyservice>0</currencyservice>
             </general>
         </zamoroka_paypalallcurrencies>
     </default>

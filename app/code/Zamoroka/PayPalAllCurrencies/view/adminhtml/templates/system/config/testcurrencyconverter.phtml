@@ -19,7 +19,7 @@
                 loaderArea: false,
                 asynchronous: true,
                 onCreate: function () {
-                    testBlock.find('.tested').hide();
+                    testBlock.find('.ok').hide();
                     testBlock.find('.processing').show();
                     jQuery('#test_currency_service_message').text('');
                 },
@@ -33,7 +33,9 @@
                         resultText = response.statusText;
                     } else {
                         resultText = json.info;
-                        testBlock.find('.tested').show();
+                        if (json.success) {
+                            testBlock.find('.ok').show();
+                        }
                     }
                     jQuery('#test_currency_service_message').text(resultText);
                 }
@@ -45,7 +47,7 @@
 <span class="collect-indicator" id="test_currency_service">
     <img class="processing" hidden="hidden" alt="Collecting" style="margin:0 5px"
          src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
-    <img class="tested" hidden="hidden" alt="Tested" style="margin:-3px 5px"
+    <img class="ok" hidden="hidden" alt="Tested" style="margin:-3px 5px"
          src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
     <span id="test_currency_service_message"></span>
 </span>

@@ -53,9 +53,9 @@ class TestCurrencyConverter extends Action
             '\Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory'
         )->load($serviceId);
 
-        $currencyConverter->setPayPalCurrencyCode($this->getRequest()->getPost('payPalCurrency'));
+        if ($currencyConverter) {
+            $currencyConverter->setPayPalCurrencyCode($this->getRequest()->getPost('payPalCurrency'));
 
-        if ($currencyConverter->exchange(1)) {
             return $result->setData(
                 [
                     'success' => true,
@@ -69,7 +69,7 @@ class TestCurrencyConverter extends Action
             return $result->setData(
                 [
                     'success' => false,
-                    'info'    => 'Error'
+                    'info'    => sprintf('Error. Can`t load service with id: %s', $serviceId)
                 ]
             );
         }

@@ -12,17 +12,25 @@ use Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface;
  */
 class CurrencyServiceFactory
 {
-    /** @var array $_services */
+    /**
+     * Here you can register new currency api service
+     * class must implement CurrencyServiceInterface
+     *
+     * @var array $_services
+     */
     protected $_services
         = [
             0 => [
-                'className' => 'FreeCurrencyConverter'
+                'className' => 'FreeCurrencyConverter',
+                'label'     => 'free.currencyconverterapi.com'
             ],
             1 => [
-                'className' => 'ApiAppnexus'
+                'className' => 'ApiAppnexus',
+                'label'     => 'appnexus.com'
             ],
             2 => [
-                'className' => 'FinanceGoogle'
+                'className' => 'FinanceGoogle',
+                'label'     => 'finance.google.com'
             ]
         ];
 
@@ -41,16 +49,30 @@ class CurrencyServiceFactory
 
     /**
      * @param int $serviceId
-     * @return null|CurrencyServiceInterface
+     * @return false|CurrencyServiceInterface
      */
     public function load(int $serviceId)
     {
         if (array_key_exists($serviceId, $this->_services)) {
-            return $this->_objectManager->create(
-                '\Zamoroka\PayPalAllCurrencies\Model\CurrencyService\\' . $this->_services[$serviceId]['className']
-            );
+            try {
+                $service = $this->_objectManager->create(
+                    '\Zamoroka\PayPalAllCurrencies\Model\CurrencyService\\' . $this->_services[$serviceId]['className']
+                );
+
+                return $service;
+            } catch (\Exception $e) {
+                return false;
+            }
         }
 
-        return null;
+        return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function getServices()
+    {
+        return $this->_services;
     }
 }

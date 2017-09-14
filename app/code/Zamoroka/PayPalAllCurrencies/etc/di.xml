@@ -7,4 +7,10 @@
             <argument name="helperObject" xsi:type="object">Zamoroka\PayPalAllCurrencies\Helper\Data</argument>
         </arguments>
     </type>
+
+    <type name="Zamoroka\PayPalAllCurrencies\Model\Config\CurrencyServices">
+        <arguments>
+            <argument name="currencyServiceFactoryObject" xsi:type="object">Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory</argument>
+        </arguments>
+    </type>
 </config>

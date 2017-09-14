@@ -13,4 +13,11 @@
             <argument name="currencyServiceFactoryObject" xsi:type="object">Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory</argument>
         </arguments>
     </type>
+
+    <type name="Magento\Paypal\Model\Config">
+        <plugin name="ZamorokaPayPalConfigPlugin" type="Zamoroka\PayPalAllCurrencies\Model\Plugin\Paypal\ConfigPlugin" sortOrder="1" />
+        <arguments>
+            <argument name="helperObject" xsi:type="object">Zamoroka\PayPalAllCurrencies\Helper\Data</argument>
+        </arguments>
+    </type>
 </config>

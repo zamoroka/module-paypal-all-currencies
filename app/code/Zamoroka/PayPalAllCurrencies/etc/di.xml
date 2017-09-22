@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="\Magento\Paypal\Model\Cart" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Paypal\Cart" />
+    <!-- TODO-zamoroka: \Magento\Sales\Model\Order -->
+    <preference for="\Magento\Quote\Model\Quote" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Quote\Quote" />
+    <preference for="\Magento\Payment\Model\Cart\SalesModel\Quote" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Payment\Cart\SalesModel\Quote" />
+    <preference for="\Magento\Payment\Model\Cart\SalesModel\Order" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Payment\Cart\SalesModel\Order" />
+
     <type name="Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceAbstract">
         <arguments>
             <argument name="curlObject" xsi:type="object">\Magento\Framework\HTTP\Client\Curl</argument>
@@ -19,5 +25,9 @@
         <arguments>
             <argument name="helperObject" xsi:type="object">Zamoroka\PayPalAllCurrencies\Helper\Data</argument>
         </arguments>
+    </type>
+
+    <type name="\Magento\Paypal\Model\Api\Nvp">
+        <plugin name="zamoroka_paypal_api_nvp_plugin" type="\Zamoroka\PayPalAllCurrencies\Model\Plugin\Paypal\Api\NvpPlugin" sortOrder="1" />
     </type>
 </config>

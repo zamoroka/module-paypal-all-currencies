@@ -65,13 +65,7 @@ class Data extends AbstractHelper
      */
     public function isModuleEnabled()
     {
-        if (parent::isModuleOutputEnabled('Zamoroka_PayPalAllCurrencies')
-            && $this->getGeneralConfig('enabled')
-        ) {
-            return true;
-        }
-
-        return false;
+        return parent::isModuleOutputEnabled('Zamoroka_PayPalAllCurrencies') && $this->getGeneralConfig('enabled');
     }
 
     /**
@@ -81,5 +75,11 @@ class Data extends AbstractHelper
     public function getPayPalCurrency($storeId = null)
     {
         return $this->getGeneralConfig('paypalcurrency', $storeId);
+    }
+
+    /** TODO-zamoroka: replace fiction converter to real currency converter */
+    public function convertToPaypalCurrency($amt, $precision = 2)
+    {
+        return round($amt * 0.038, $precision);
     }
 }

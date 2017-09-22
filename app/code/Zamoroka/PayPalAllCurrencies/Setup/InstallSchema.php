@@ -41,55 +41,58 @@ class InstallSchema implements InstallSchemaInterface
 
         foreach ($itemTables as $itemTable) {
             $connection->addColumn(
-                $itemTable, 'price_in_paypal_currency', [
-                    'type'     => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
-                    'length'     => '12,4',
-                    'nullable' => true,
-                    'comment'  => 'Price in paypal currency',
-                    'default'  => '0'
-                ]
+                $itemTable, 'paypal_price', $this->getAmountConfig('Price in paypal currency')
+            );
+
+            $connection->addColumn(
+                $itemTable, 'paypal_row_total', $this->getAmountConfig('Row total in paypal currency')
             );
         }
 
         foreach ($orderTables as $orderTable) {
             $connection->addColumn(
-                $orderTable, 'subtotal_in_paypal_currency', [
-                    'type'     => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
-                    'nullable' => true,
-                    'length'     => '12,4',
-                    'comment'  => 'Subtotal in paypal currency',
-                    'default'  => '0'
-                ]
+                $orderTable, 'paypal_subtotal', $this->getAmountConfig('Subtotal in paypal currency')
             );
             $connection->addColumn(
-                $orderTable, 'grand_total_in_paypal_currency', [
-                    'type'     => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
-                    'nullable' => true,
-                    'length'     => '12,4',
-                    'comment'  => 'Grand total in paypal currency',
-                    'default'  => '0'
-                ]
+                $orderTable, 'paypal_grand_total', $this->getAmountConfig('Grand total in paypal currency')
             );
             $connection->addColumn(
-                $orderTable, 'shipping_amount_in_paypal_currency', [
-                    'type'     => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
-                    'nullable' => true,
-                    'length'     => '12,4',
-                    'comment'  => 'Shipping amount in paypal currency',
-                    'default'  => '0'
-                ]
+                $orderTable, 'paypal_tax_amount', $this->getAmountConfig('Tax in paypal currency')
+            );
+            $connection->addColumn(
+                $orderTable, 'paypal_shipping_amount', $this->getAmountConfig('Shipping in paypal currency')
+            );
+            $connection->addColumn(
+                $orderTable, 'paypal_discount_amount', $this->getAmountConfig('Discount in paypal currency')
+            );
+            $connection->addColumn(
+                $orderTable, 'paypal_rate', $this->getAmountConfig('Paypal rate')
             );
             $connection->addColumn(
                 $orderTable, 'paypal_currency_code', [
                     'type'     => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     'nullable' => true,
                     'length'   => 20,
-                    'comment'  => 'Paypal currency code',
-                    'default'  => '0'
+                    'comment'  => 'Paypal currency code'
                 ]
             );
         }
 
         $installer->endSetup();
+    }
+
+    /**
+     * @param $comment
+     * @return array
+     */
+    public function getAmountConfig($comment)
+    {
+        return [
+            'type'     => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+            'nullable' => true,
+            'length'   => '12,4',
+            'comment'  => $comment,
+            'default'  => '0'
+        ];
     }
 }

@@ -40,6 +40,15 @@ class UpgradeSchema implements UpgradeSchemaInterface
                                    'ID'
                                )
                                ->addColumn(
+                                   'service_id',
+                                   Table::TYPE_INTEGER,
+                                   null,
+                                   [
+                                       'nullable' => false,
+                                   ],
+                                   'Currency service id'
+                               )
+                               ->addColumn(
                                    'base_currency_code',
                                    Table::TYPE_TEXT,
                                    null,

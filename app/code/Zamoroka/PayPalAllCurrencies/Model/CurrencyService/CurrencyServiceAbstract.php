@@ -26,21 +26,27 @@ abstract class CurrencyServiceAbstract
     /** @var  string $_payPalCurrencyCode */
     protected $_payPalCurrencyCode = null;
 
+    /** @var  int $_serviceId */
+    protected $_serviceId;
+
     /**
      * CurrencyServiceAbstract constructor.
      *
      * @param \Magento\Framework\HTTP\Client\Curl        $curl
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Zamoroka\PayPalAllCurrencies\Helper\Data  $helper
+     * @param int                                      $serviceId
      */
     public function __construct(
         Curl $curl,
         StoreManagerInterface $storeManager,
-        Data $helper
+        Data $helper,
+        $serviceId
     ) {
         $this->_curl = $curl;
         $this->_storeManager = $storeManager;
         $this->_helper = $helper;
+        $this->_serviceId = $serviceId;
     }
 
     /**
@@ -49,6 +55,14 @@ abstract class CurrencyServiceAbstract
     public function getCurl()
     {
         return $this->_curl;
+    }
+
+    /**
+     * @return int
+     */
+    public function getServiceId()
+    {
+        return $this->_serviceId;
     }
 
     /**
@@ -79,10 +93,10 @@ abstract class CurrencyServiceAbstract
      * @param null|int $storeId
      * @return string
      */
-    public function getPayPalCurrencyCode($storeId = null)
+    public function getPayPalCurrencyCode()
     {
         if (!$this->_payPalCurrencyCode) {
-            $this->_payPalCurrencyCode = $this->getHelper()->getPayPalCurrency($storeId);
+            $this->_payPalCurrencyCode = $this->getHelper()->getPayPalCurrency($this->getStoreId());
         }
 
         return $this->_payPalCurrencyCode;

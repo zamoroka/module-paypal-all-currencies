@@ -31,7 +31,7 @@ interface CurrencyServiceInterface
      * @param null|int $storeId
      * @return string
      */
-    public function getPayPalCurrencyCode($storeId = null);
+    public function getPayPalCurrencyCode();
 
     /**
      * @param string $payPalCurrencyCode

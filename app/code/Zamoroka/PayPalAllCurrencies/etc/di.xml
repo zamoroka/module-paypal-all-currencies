@@ -22,12 +22,14 @@
 
     <type name="Magento\Paypal\Model\Config">
         <plugin name="ZamorokaPayPalConfigPlugin" type="Zamoroka\PayPalAllCurrencies\Model\Plugin\Paypal\ConfigPlugin" sortOrder="1" />
-        <arguments>
-            <argument name="helperObject" xsi:type="object">Zamoroka\PayPalAllCurrencies\Helper\Data</argument>
-        </arguments>
     </type>
 
     <type name="\Magento\Paypal\Model\Api\Nvp">
         <plugin name="zamoroka_paypal_api_nvp_plugin" type="\Zamoroka\PayPalAllCurrencies\Model\Plugin\Paypal\Api\NvpPlugin" sortOrder="1" />
     </type>
+
+    <type name="\Magento\Config\Model\Config">
+        <plugin name="admin_system_config_save_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Config\Model\ConfigPlugin" sortOrder="1"/>
+    </type>
+
 </config>

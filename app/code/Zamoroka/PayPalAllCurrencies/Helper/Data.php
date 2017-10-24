@@ -70,6 +70,15 @@ class Data extends AbstractHelper
 
     /**
      * @param null|int $storeId
+     * @return bool
+     */
+    public function getCurrencyServiceId($storeId = null)
+    {
+        return $this->getGeneralConfig('currencyservice', $storeId);
+    }
+
+    /**
+     * @param null|int $storeId
      * @return string
      */
     public function getPayPalCurrency($storeId = null)

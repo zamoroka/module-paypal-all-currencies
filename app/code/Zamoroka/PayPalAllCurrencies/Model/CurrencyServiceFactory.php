@@ -3,6 +3,7 @@
 namespace Zamoroka\PayPalAllCurrencies\Model;
 
 use Magento\Framework\App\Action\Context;
+use Psr\Log\LoggerInterface;
 use Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface;
 
 /**
@@ -37,14 +38,19 @@ class CurrencyServiceFactory
     /** @var \Magento\Framework\ObjectManagerInterface $_objectManager */
     protected $_objectManager;
 
+    /** @var \Psr\Log\LoggerInterface $_logger */
+    protected $_logger;
+
     /**
      * CurrencyConverter constructor.
      *
      * @param \Magento\Framework\App\Action\Context $context
+     * @param \Psr\Log\LoggerInterface              $logger
      */
-    public function __construct(Context $context)
+    public function __construct(Context $context, LoggerInterface $logger)
     {
         $this->_objectManager = $context->getObjectManager();
+        $this->_logger = $logger;
     }
 
     /**
@@ -56,11 +62,14 @@ class CurrencyServiceFactory
         if (array_key_exists($serviceId, $this->_services)) {
             try {
                 $service = $this->_objectManager->create(
-                    '\Zamoroka\PayPalAllCurrencies\Model\CurrencyService\\' . $this->_services[$serviceId]['className']
+                    '\Zamoroka\PayPalAllCurrencies\Model\CurrencyService\\' . $this->_services[$serviceId]['className'],
+                    ['serviceId' => $serviceId]
                 );
 
                 return $service;
             } catch (\Exception $e) {
+                $this->_logger->addError($e->getMessage());
+
                 return false;
             }
         }

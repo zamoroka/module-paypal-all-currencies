@@ -1,11 +1,11 @@
 <?php
 
-namespace Zamoroka\PayPalAllCurrencies\Model\Preference\Payment\Cart\SalesModel;
+namespace Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel;
 
 /**
  * Wrapper for \Magento\Quote\Model\Quote sales model
  */
-class Order extends \Magento\Payment\Model\Cart\SalesModel\Order implements SalesModelInterface
+class Quote extends \Magento\Payment\Model\Cart\SalesModel\Quote implements SalesModelInterface
 {
     /**
      * @return float

@@ -1,6 +1,6 @@
 <?php
 
-namespace Zamoroka\PayPalAllCurrencies\Model\Preference\Quote;
+namespace Zamoroka\PayPalAllCurrencies\Preference\Quote\Model;
 
 /**
  * Class Item

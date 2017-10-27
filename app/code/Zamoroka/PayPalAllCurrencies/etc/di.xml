@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="\Magento\Paypal\Model\Cart" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Paypal\Cart" />
+    <preference for="\Magento\Paypal\Model\Cart" type="\Zamoroka\PayPalAllCurrencies\Preference\Paypal\Model\Cart" />
     <!-- TODO-zamoroka: \Magento\Sales\Model\Order -->
-    <preference for="\Magento\Quote\Model\Quote" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Quote\Quote" />
-    <preference for="\Magento\Payment\Model\Cart\SalesModel\Quote" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Payment\Cart\SalesModel\Quote" />
-    <preference for="\Magento\Payment\Model\Cart\SalesModel\Order" type="\Zamoroka\PayPalAllCurrencies\Model\Preference\Payment\Cart\SalesModel\Order" />
+    <preference for="\Magento\Quote\Model\Quote" type="\Zamoroka\PayPalAllCurrencies\Preference\Quote\Model\Quote" />
+    <preference for="\Magento\Payment\Model\Cart\SalesModel\Quote" type="\Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel\Quote" />
+    <preference for="\Magento\Payment\Model\Cart\SalesModel\Order" type="\Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel\Order" />
 
     <type name="Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceAbstract">
         <arguments>
@@ -21,11 +21,11 @@
     </type>
 
     <type name="Magento\Paypal\Model\Config">
-        <plugin name="ZamorokaPayPalConfigPlugin" type="Zamoroka\PayPalAllCurrencies\Model\Plugin\Paypal\ConfigPlugin" sortOrder="1" />
+        <plugin name="ZamorokaPayPalConfigPlugin" type="Zamoroka\PayPalAllCurrencies\Plugin\Paypal\Model\ConfigPlugin" sortOrder="1" />
     </type>
 
     <type name="\Magento\Paypal\Model\Api\Nvp">
-        <plugin name="zamoroka_paypal_api_nvp_plugin" type="\Zamoroka\PayPalAllCurrencies\Model\Plugin\Paypal\Api\NvpPlugin" sortOrder="1" />
+        <plugin name="zamoroka_paypal_api_nvp_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Paypal\Model\Api\NvpPlugin" sortOrder="1" />
     </type>
 
     <type name="\Magento\Config\Model\Config">

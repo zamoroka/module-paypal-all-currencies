@@ -1,6 +1,6 @@
 <?php
 
-namespace Zamoroka\PayPalAllCurrencies\Model\Preference\Payment\Cart\SalesModel;
+namespace Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel;
 
 /**
  * Interface SalesModelInterface

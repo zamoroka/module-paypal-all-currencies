@@ -1,6 +1,6 @@
 <?php
 
-namespace Zamoroka\PayPalAllCurrencies\Model\Preference\Paypal;
+namespace Zamoroka\PayPalAllCurrencies\Preference\Paypal\Model;
 
 /**
  * Class Cart

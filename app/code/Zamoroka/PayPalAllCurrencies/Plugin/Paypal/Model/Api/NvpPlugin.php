@@ -1,6 +1,6 @@
 <?php
 
-namespace Zamoroka\PayPalAllCurrencies\Model\Plugin\Paypal\Api;
+namespace Zamoroka\PayPalAllCurrencies\Plugin\Paypal\Model\Api;
 
 use Magento\Paypal\Model\Api\Nvp;
 use Zamoroka\PayPalAllCurrencies\Helper\Data;

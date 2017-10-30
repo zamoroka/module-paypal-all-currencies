@@ -105,7 +105,7 @@ class Rates extends AbstractModel
      * @param int    $serviceId
      * @param string $baseCurrency
      * @param string $paypalCurrency
-     * @return $this|null
+     * @return $this|null|\Magento\Framework\DataObject
      */
     public function getExistingRate($serviceId, $baseCurrency, $paypalCurrency)
     {

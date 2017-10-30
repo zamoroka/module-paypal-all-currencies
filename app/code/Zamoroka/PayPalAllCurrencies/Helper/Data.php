@@ -33,9 +33,9 @@ class Data extends AbstractHelper
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager
     ) {
+        parent::__construct($context);
         $this->objectManager = $objectManager;
         $this->storeManager = $storeManager;
-        parent::__construct($context);
     }
 
     /**

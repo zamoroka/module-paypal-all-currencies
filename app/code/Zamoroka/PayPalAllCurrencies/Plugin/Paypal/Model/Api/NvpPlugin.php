@@ -38,7 +38,7 @@ class NvpPlugin
 
     /**
      * @TODO-zamoroka: remove this plugin. Find another solution
-     * used in Magento\Paypal\Model\Express\Checkout function start()
+     * used in Magento\Paypal\Model\Express\Checkout::start()
      *
      * @param \Magento\Paypal\Model\Api\Nvp $nvp
      * @param                               $key

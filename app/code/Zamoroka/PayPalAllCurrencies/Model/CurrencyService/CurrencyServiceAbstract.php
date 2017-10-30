@@ -10,7 +10,6 @@ use \Zamoroka\PayPalAllCurrencies\Model\RatesFactory;
 
 /**
  * Class CurrencyServiceAbstract
- * docs http://www.currencyconverterapi.com/docs
  *
  * @package Zamoroka\PayPalAllCurrencies\Model\CurrencyService
  */
@@ -125,6 +124,8 @@ abstract class CurrencyServiceAbstract
     }
 
     /**
+     * Exchange rates from database
+     *
      * @param float $amt
      * @param int   $precision
      * @return float

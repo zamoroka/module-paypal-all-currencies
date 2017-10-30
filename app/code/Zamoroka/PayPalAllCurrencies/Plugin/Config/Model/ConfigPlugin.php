@@ -15,11 +15,11 @@ class ConfigPlugin
     /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $_helper */
     protected $_helper;
 
-    /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory $_currencyServiceFactory */
-    protected $_currencyServiceFactory;
+    /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory $currencyServiceFactory */
+    protected $currencyServiceFactory;
 
-    /** @var \Zamoroka\PayPalAllCurrencies\Model\RatesFactory $_ratesFactory */
-    protected $_ratesFactory;
+    /** @var \Zamoroka\PayPalAllCurrencies\Model\RatesFactory $ratesFactory */
+    protected $ratesFactory;
 
     /**
      * ConfigPlugin constructor.
@@ -34,8 +34,8 @@ class ConfigPlugin
         RatesFactory $ratesFactory
     ) {
         $this->_helper = $helper;
-        $this->_currencyServiceFactory = $currencyServiceFactory;
-        $this->_ratesFactory = $ratesFactory;
+        $this->currencyServiceFactory = $currencyServiceFactory;
+        $this->ratesFactory = $ratesFactory;
     }
 
     /**
@@ -47,10 +47,10 @@ class ConfigPlugin
     {
         if ($config->getSection() === 'zamoroka_paypalallcurrencies') {
             /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface $currencyService */
-            $currencyService = $this->_currencyServiceFactory->load($this->_helper->getCurrencyServiceId());
+            $currencyService = $this->currencyServiceFactory->load($this->_helper->getCurrencyServiceId());
 
             /** @var \Zamoroka\PayPalAllCurrencies\Model\Rates $ratesModel */
-            $ratesModel = $this->_ratesFactory->create();
+            $ratesModel = $this->ratesFactory->create();
             $ratesModel->updateRateFromService($currencyService);
             $ratesModel->save();
         }

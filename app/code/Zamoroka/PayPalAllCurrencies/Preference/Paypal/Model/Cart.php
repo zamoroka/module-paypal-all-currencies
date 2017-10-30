@@ -72,7 +72,7 @@ class Cart extends \Magento\Paypal\Model\Cart
                 );
             }
 
-            /** TODO-zamoroka: check this, when data will be saved in order and for instanceof \Magento\Payment\Model\Cart\SalesModel\Order */
+            /** @TODO-zamoroka: check this, when data will be saved in order and for instanceof \Magento\Payment\Model\Cart\SalesModel\Order */
             $this->addSubtotal($this->_salesModel->getPaypalSubtotal());
             $this->addTax($this->_salesModel->getPaypalTaxAmount());
             $this->addShipping($this->_salesModel->getPaypalShippingAmount());

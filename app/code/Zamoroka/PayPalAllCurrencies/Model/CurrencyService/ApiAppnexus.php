@@ -25,7 +25,7 @@ class ApiAppnexus extends CurrencyServiceAbstract implements CurrencyServiceInte
      * @param float $amt
      * @return float
      */
-    public function exchange(float $amt)
+    public function exchangeFromService(float $amt)
     {
         $currencyRate = $this->getUSDRate($this->getPayPalCurrencyCode($this->getStoreId()))
             / $this->getUSDRate($this->getStoreCurrencyCode());

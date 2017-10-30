@@ -63,7 +63,7 @@ class Rates extends AbstractModel
     {
         $baseCurrencyCode = $currencyService->getStoreCurrencyCode();
         $paypalCurrencyCode = $currencyService->getPayPalCurrencyCode();
-        $rate = $currencyService->exchange(1);
+        $rate = $currencyService->exchangeFromService(1);
         $serviceId = $currencyService->getServiceId();
 
         /** @var \Zamoroka\PayPalAllCurrencies\Model\Rates $rateItem */

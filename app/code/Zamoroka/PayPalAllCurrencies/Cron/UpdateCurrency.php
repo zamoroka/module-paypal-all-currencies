@@ -46,16 +46,14 @@ class UpdateCurrency
      */
     public function execute()
     {
-        $this->logger->info(__METHOD__);
         /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface $currencyService */
         $currencyService = $this->_currencyServiceFactory->load($this->_helper->getCurrencyServiceId());
-        $this->logger->info($this->_helper->getCurrencyServiceId());
 
         /** @var \Zamoroka\PayPalAllCurrencies\Model\Rates $ratesModel */
         $ratesModel = $this->_ratesFactory->create();
         $ratesModel->updateRateFromService($currencyService);
         $ratesModel->save();
-        $this->logger->info('saved');
+        $this->logger->info('Rate is updated');
 
         return $this;
     }

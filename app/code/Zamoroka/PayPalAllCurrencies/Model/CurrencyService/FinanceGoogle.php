@@ -24,7 +24,7 @@ class FinanceGoogle extends CurrencyServiceAbstract implements CurrencyServiceIn
      * @param float $amt
      * @return float
      */
-    public function exchange(float $amt)
+    public function exchangeFromService(float $amt)
     {
         $url = $this->getApiUrl() . '?' . http_build_query(
                 [

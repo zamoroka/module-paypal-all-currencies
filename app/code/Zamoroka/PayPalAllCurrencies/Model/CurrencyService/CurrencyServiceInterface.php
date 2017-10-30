@@ -15,12 +15,23 @@ interface CurrencyServiceInterface
     public function getApiUrl();
 
     /**
-     * Exchange rates
+     * Exchange rates from api service
      *
      * @param float $amt
+     *
      * @return float
      */
-    public function exchange(float $amt);
+    public function exchangeFromService(float $amt);
+
+    /**
+     * Exchange rates from database
+     *
+     * @param float $amt
+     * @param int   $precision
+     *
+     * @return float
+     */
+    public function exchange($amt, $precision = 2);
 
     /**
      * @return string

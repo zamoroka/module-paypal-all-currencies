@@ -2,6 +2,11 @@
 
 namespace Zamoroka\PayPalAllCurrencies\Preference\Quote\Model;
 
+use Magento\Framework\Message\ManagerInterface;
+use Psr\Log\LoggerInterface;
+use Zamoroka\PayPalAllCurrencies\Helper\Data;
+use Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory;
+
 /**
  * Class Item
  *
@@ -9,8 +14,14 @@ namespace Zamoroka\PayPalAllCurrencies\Preference\Quote\Model;
  */
 class Quote extends \Magento\Quote\Model\Quote
 {
-    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $_helper */
-    protected $_helper;
+    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $helper */
+    protected $helper;
+
+    /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory $currencyServiceFactory */
+    protected $currencyServiceFactory;
+
+    /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface|null $currencyService */
+    protected $currencyService = null;
 
     /** @var \Psr\Log\LoggerInterface $logger */
     protected $logger;
@@ -59,6 +70,9 @@ class Quote extends \Magento\Quote\Model\Quote
      * @param \Magento\Quote\Model\ShippingFactory                               $shippingFactory
      * @param \Magento\Quote\Model\ShippingAssignmentFactory                     $shippingAssignmentFactory
      * @param \Zamoroka\PayPalAllCurrencies\Helper\Data                          $helper
+     * @param \Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory         $currencyServiceFactory
+     * @param \Psr\Log\LoggerInterface                                           $logger
+     * @param \Magento\Framework\Message\ManagerInterface                        $messageManager
      * @param null                                                               $resource
      * @param null                                                               $resourceCollection
      * @param array                                                              $data
@@ -101,9 +115,10 @@ class Quote extends \Magento\Quote\Model\Quote
         \Magento\Quote\Model\Quote\TotalsReader $totalsReader,
         \Magento\Quote\Model\ShippingFactory $shippingFactory,
         \Magento\Quote\Model\ShippingAssignmentFactory $shippingAssignmentFactory,
-        \Zamoroka\PayPalAllCurrencies\Helper\Data $helper,
-        \Psr\Log\LoggerInterface $logger,
-        \Magento\Framework\Message\ManagerInterface $messageManager,
+        Data $helper,
+        CurrencyServiceFactory $currencyServiceFactory,
+        LoggerInterface $logger,
+        ManagerInterface $messageManager,
         $resource = null,
         $resourceCollection = null,
         array $data = []
@@ -118,9 +133,10 @@ class Quote extends \Magento\Quote\Model\Quote
             $currencyFactory, $extensionAttributesJoinProcessor, $totalsCollector, $totalsReader, $shippingFactory,
             $shippingAssignmentFactory, $resource, $resourceCollection, $data
         );
-        $this->_helper = $helper;
+        $this->helper = $helper;
         $this->logger = $logger;
         $this->messageManager = $messageManager;
+        $this->currencyServiceFactory = $currencyServiceFactory;
     }
 
     /**
@@ -130,7 +146,7 @@ class Quote extends \Magento\Quote\Model\Quote
      */
     public function beforeSave()
     {
-        if ($this->_helper->isModuleEnabled()) {
+        if ($this->helper->isModuleEnabled()) {
 
             foreach ($this->getAllItems() as $item) {
                 $amt = $this->getAmountForPaypal('item_price', $item);
@@ -146,7 +162,7 @@ class Quote extends \Magento\Quote\Model\Quote
             $this->setPaypalDiscountAmount($this->getAmountForPaypal('discount'));
             $this->setPaypalTaxAmount($this->getAmountForPaypal('tax'));
 
-            $this->setPaypalRate($this->_helper->convertToPaypalCurrency(1, 4));
+            $this->setPaypalRate($this->getCurrencyService()->exchange(1, 4));
             $this->setPaypalCurrencyCode('USD');
         }
 
@@ -164,7 +180,7 @@ class Quote extends \Magento\Quote\Model\Quote
     public function getDataUsingMethod($key, $args = null)
     {
         if ($key == 'base_grand_total') {
-            return $this->_helper->convertToPaypalCurrency(parent::getDataUsingMethod($key, $args));
+            return $this->getCurrencyService()->exchange(parent::getDataUsingMethod($key, $args));
         }
 
         return parent::getDataUsingMethod($key, $args);
@@ -214,6 +230,18 @@ class Quote extends \Magento\Quote\Model\Quote
             $this->messageManager->addErrorMessage(__('Can`t calculate paypal amount'));
         }
 
-        return $this->_helper->convertToPaypalCurrency($amt);
+        return $this->getCurrencyService()->exchange($amt);
+    }
+
+    /**
+     * @return false|null|\Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface
+     */
+    public function getCurrencyService()
+    {
+        if (!$this->currencyService) {
+            $this->currencyService = $this->currencyServiceFactory->load($this->helper->getCurrencyServiceId());
+        }
+
+        return $this->currencyService;
     }
 }

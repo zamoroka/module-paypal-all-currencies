@@ -27,8 +27,8 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
  */
 class Rates extends AbstractModel
 {
-    /** @var \Magento\Framework\Stdlib\DateTime\DateTime|null $_dateTime */
-    protected $_dateTime = null;
+    /** @var \Magento\Framework\Stdlib\DateTime\DateTime|null $dateTime */
+    protected $dateTime = null;
 
     /**
      * @param \Magento\Framework\Stdlib\DateTime\DateTime             $dateTime
@@ -46,7 +46,7 @@ class Rates extends AbstractModel
         AbstractDb $resourceCollection = null,
         array $data = []
     ) {
-        $this->_dateTime = $dateTime;
+        $this->dateTime = $dateTime;
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
 
@@ -73,7 +73,7 @@ class Rates extends AbstractModel
             $this->insertRate($serviceId, $baseCurrencyCode, $paypalCurrencyCode, $rate);
         } else {
             $rateItem->setRate($this->roundRate($rate));
-            $rateItem->setUpdatedAt($this->_dateTime->gmtDate());
+            $rateItem->setUpdatedAt($this->dateTime->gmtDate());
             $rateItem->save();
         }
 
@@ -94,7 +94,7 @@ class Rates extends AbstractModel
             'base_currency_code'   => $baseCurrencyCode,
             'paypal_currency_code' => $paypalCurrencyCode,
             'rate'                 => $this->roundRate($rate),
-            'updated_at'           => $this->_dateTime->gmtDate()
+            'updated_at'           => $this->dateTime->gmtDate()
         ];
         $this->setData($data);
 

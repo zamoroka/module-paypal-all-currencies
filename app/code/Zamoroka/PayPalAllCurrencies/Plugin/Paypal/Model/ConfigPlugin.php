@@ -12,17 +12,28 @@ use Zamoroka\PayPalAllCurrencies\Helper\Data;
  */
 class ConfigPlugin
 {
-    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $_helper */
-    protected $_helper;
+    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $helper */
+    protected $helper;
 
+    /**
+     * ConfigPlugin constructor.
+     *
+     * @param \Zamoroka\PayPalAllCurrencies\Helper\Data $helper
+     */
     public function __construct(Data $helper)
     {
-        $this->_helper = $helper;
+        $this->helper = $helper;
     }
 
+    /**
+     * Check whether specified currency code is supported
+     *
+     * @param string $code
+     * @return bool
+     */
     public function afterIsCurrencyCodeSupported(Config $config, $result)
     {
-        if (!$result && $this->_helper->isModuleEnabled()) {
+        if (!$result && $this->helper->isModuleEnabled()) {
             $result = true;
         }
 

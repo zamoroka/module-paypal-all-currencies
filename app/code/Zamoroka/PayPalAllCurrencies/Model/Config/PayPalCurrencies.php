@@ -14,7 +14,7 @@ class PayPalCurrencies implements \Magento\Framework\Option\ArrayInterface
      *
      * @var string[]
      */
-    protected $_supportedCurrencyCodes
+    protected $supportedCurrencyCodes
         = [
             'AUD',
             'CAD',
@@ -45,7 +45,7 @@ class PayPalCurrencies implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         $optionArray = [];
-        foreach ($this->_supportedCurrencyCodes as $currencyCode) {
+        foreach ($this->supportedCurrencyCodes as $currencyCode) {
             $optionArray[] = ['value' => $currencyCode, 'label' => $currencyCode];
         }
 

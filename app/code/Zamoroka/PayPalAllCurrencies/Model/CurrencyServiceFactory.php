@@ -17,9 +17,9 @@ class CurrencyServiceFactory
      * Here you can register new currency api service
      * class must implement CurrencyServiceInterface
      *
-     * @var array $_services
+     * @var array $services
      */
-    protected $_services
+    protected $services
         = [
             0 => [
                 'className' => 'FreeCurrencyConverter',
@@ -35,11 +35,11 @@ class CurrencyServiceFactory
             ]
         ];
 
-    /** @var \Magento\Framework\ObjectManagerInterface $_objectManager */
-    protected $_objectManager;
+    /** @var \Magento\Framework\ObjectManagerInterface $objectManager */
+    protected $objectManager;
 
-    /** @var \Psr\Log\LoggerInterface $_logger */
-    protected $_logger;
+    /** @var \Psr\Log\LoggerInterface $logger */
+    protected $logger;
 
     /**
      * CurrencyConverter constructor.
@@ -49,8 +49,8 @@ class CurrencyServiceFactory
      */
     public function __construct(Context $context, LoggerInterface $logger)
     {
-        $this->_objectManager = $context->getObjectManager();
-        $this->_logger = $logger;
+        $this->objectManager = $context->getObjectManager();
+        $this->logger = $logger;
     }
 
     /**
@@ -59,16 +59,16 @@ class CurrencyServiceFactory
      */
     public function load(int $serviceId)
     {
-        if (array_key_exists($serviceId, $this->_services)) {
+        if (array_key_exists($serviceId, $this->services)) {
             try {
-                $service = $this->_objectManager->create(
-                    '\Zamoroka\PayPalAllCurrencies\Model\CurrencyService\\' . $this->_services[$serviceId]['className'],
+                $service = $this->objectManager->create(
+                    '\Zamoroka\PayPalAllCurrencies\Model\CurrencyService\\' . $this->services[$serviceId]['className'],
                     ['serviceId' => $serviceId]
                 );
 
                 return $service;
             } catch (\Exception $e) {
-                $this->_logger->addError($e->getMessage());
+                $this->logger->addError($e->getMessage());
 
                 return false;
             }
@@ -82,6 +82,6 @@ class CurrencyServiceFactory
      */
     public function getServices()
     {
-        return $this->_services;
+        return $this->services;
     }
 }

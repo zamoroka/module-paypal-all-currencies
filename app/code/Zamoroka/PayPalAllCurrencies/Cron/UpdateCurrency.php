@@ -9,14 +9,14 @@ use Psr\Log\LoggerInterface;
 
 class UpdateCurrency
 {
-    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $_helper */
-    protected $_helper;
+    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $helper */
+    protected $helper;
 
-    /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory $_currencyServiceFactory */
-    protected $_currencyServiceFactory;
+    /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory $currencyServiceFactory */
+    protected $currencyServiceFactory;
 
-    /** @var \Zamoroka\PayPalAllCurrencies\Model\RatesFactory $_ratesFactory */
-    protected $_ratesFactory;
+    /** @var \Zamoroka\PayPalAllCurrencies\Model\RatesFactory $ratesFactory */
+    protected $ratesFactory;
 
     /** @var \Psr\Log\LoggerInterface $logger */
     protected $logger;
@@ -35,9 +35,9 @@ class UpdateCurrency
         RatesFactory $ratesFactory,
         LoggerInterface $logger
     ) {
-        $this->_helper = $helper;
-        $this->_currencyServiceFactory = $currencyServiceFactory;
-        $this->_ratesFactory = $ratesFactory;
+        $this->helper = $helper;
+        $this->currencyServiceFactory = $currencyServiceFactory;
+        $this->ratesFactory = $ratesFactory;
         $this->logger = $logger;
     }
 
@@ -47,10 +47,10 @@ class UpdateCurrency
     public function execute()
     {
         /** @var \Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface $currencyService */
-        $currencyService = $this->_currencyServiceFactory->load($this->_helper->getCurrencyServiceId());
+        $currencyService = $this->currencyServiceFactory->load($this->helper->getCurrencyServiceId());
 
         /** @var \Zamoroka\PayPalAllCurrencies\Model\Rates $ratesModel */
-        $ratesModel = $this->_ratesFactory->create();
+        $ratesModel = $this->ratesFactory->create();
         $ratesModel->updateRateFromService($currencyService);
         $ratesModel->save();
         $this->logger->info('Rate is updated');

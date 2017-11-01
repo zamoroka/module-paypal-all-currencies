@@ -31,7 +31,7 @@ interface CurrencyServiceInterface
      *
      * @return float
      */
-    public function exchange($amt, $precision = 2);
+    public function exchange($amt, $precision = 4);
 
     /**
      * @return string

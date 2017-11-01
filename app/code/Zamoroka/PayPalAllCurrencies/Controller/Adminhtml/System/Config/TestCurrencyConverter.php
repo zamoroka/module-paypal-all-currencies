@@ -60,7 +60,8 @@ class TestCurrencyConverter extends Action
                 [
                     'success' => true,
                     'info'    => sprintf(
-                        '1 %s = %s %s', $currencyConverter->getStoreCurrencyCode(),
+                        '1 %s = %s %s',
+                        $currencyConverter->getStoreCurrencyCode(),
                         $currencyConverter->exchangeFromService(1),
                         $currencyConverter->getPayPalCurrencyCode()
                     )

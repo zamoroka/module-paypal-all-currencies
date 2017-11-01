@@ -33,9 +33,9 @@ class Data extends AbstractHelper
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager
     ) {
+        parent::__construct($context);
         $this->objectManager = $objectManager;
         $this->storeManager = $storeManager;
-        parent::__construct($context);
     }
 
     /**
@@ -84,5 +84,16 @@ class Data extends AbstractHelper
     public function getPayPalCurrency($storeId = null)
     {
         return $this->getGeneralConfig('paypalcurrency', $storeId);
+    }
+
+    /**
+     * @return array
+     */
+    public function getPaypalPaymentMethods()
+    {
+        return [
+            'paypal_express',
+            'paypal_express_bml'
+        ];
     }
 }

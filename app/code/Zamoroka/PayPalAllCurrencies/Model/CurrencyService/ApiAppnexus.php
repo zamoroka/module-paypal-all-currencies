@@ -30,7 +30,7 @@ class ApiAppnexus extends CurrencyServiceAbstract implements CurrencyServiceInte
         $currencyRate = $this->getUSDRate($this->getPayPalCurrencyCode($this->getStoreId()))
             / $this->getUSDRate($this->getStoreCurrencyCode());
 
-        return $currencyRate * $amt;
+        return round($currencyRate * $amt, 4);
     }
 
     /**

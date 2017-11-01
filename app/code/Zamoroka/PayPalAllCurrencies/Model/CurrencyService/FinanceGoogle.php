@@ -39,6 +39,8 @@ class FinanceGoogle extends CurrencyServiceAbstract implements CurrencyServiceIn
 
         preg_match("/<span class=bld>(.*)<\/span>/", $response, $converted);
 
-        return preg_replace("/[^0-9.]/", "", $converted[1]);
+        $rate = preg_replace("/[^0-9.]/", "", $converted[1]);
+
+        return round($rate, 4);
     }
 }

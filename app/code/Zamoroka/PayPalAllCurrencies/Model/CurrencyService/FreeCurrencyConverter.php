@@ -27,7 +27,7 @@ class FreeCurrencyConverter extends CurrencyServiceAbstract implements CurrencyS
      */
     public function exchangeFromService(float $amt)
     {
-        $exchangeQuery = $this->getStoreCurrencyCode() . '_' . $this->getPayPalCurrencyCode($this->getStoreId());
+        $exchangeQuery = $this->getStoreCurrencyCode() . '_' . $this->getPayPalCurrencyCode();
         $url = $this->getApiUrl() . '?' . http_build_query(
                 [
                     'q'       => $exchangeQuery,
@@ -40,6 +40,6 @@ class FreeCurrencyConverter extends CurrencyServiceAbstract implements CurrencyS
 
         $result = floatval($response->$exchangeQuery) * $amt;
 
-        return $result;
+        return round($result, 4);
     }
 }

@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright © 2016 MageWorx. All rights reserved.
- * See LICENSE.txt for license details.
- */
 
 namespace Zamoroka\PayPalAllCurrencies\Block\System\Config;
 

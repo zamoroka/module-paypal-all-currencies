@@ -9,8 +9,8 @@ namespace Zamoroka\PayPalAllCurrencies\Preference\Paypal\Model;
  */
 class Cart extends \Magento\Paypal\Model\Cart
 {
-    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $_helper */
-    protected $_helper;
+    /** @var \Zamoroka\PayPalAllCurrencies\Helper\Data $helper */
+    protected $helper;
 
     /**
      * NvpPlugin constructor.
@@ -27,7 +27,7 @@ class Cart extends \Magento\Paypal\Model\Cart
         \Zamoroka\PayPalAllCurrencies\Helper\Data $helper
     ) {
         parent::__construct($salesModelFactory, $eventManager, $salesModel);
-        $this->_helper = $helper;
+        $this->helper = $helper;
     }
 
     /**
@@ -37,7 +37,7 @@ class Cart extends \Magento\Paypal\Model\Cart
      */
     protected function _importItemsFromSalesModel()
     {
-        if ($this->_helper->isModuleEnabled()) {
+        if ($this->helper->isModuleEnabled()) {
             $this->_salesModelItems = [];
 
             foreach ($this->_salesModel->getAllItems() as $item) {

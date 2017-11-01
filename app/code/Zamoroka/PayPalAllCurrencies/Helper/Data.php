@@ -85,4 +85,15 @@ class Data extends AbstractHelper
     {
         return $this->getGeneralConfig('paypalcurrency', $storeId);
     }
+
+    /**
+     * @return array
+     */
+    public function getPaypalPaymentMethods()
+    {
+        return [
+            'paypal_express',
+            'paypal_express_bml'
+        ];
+    }
 }

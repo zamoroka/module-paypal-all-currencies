@@ -53,7 +53,7 @@ class NvpPlugin
                     $value = $this->getCurrencyService()->exchange($value);
                     break;
                 case 'currency_code':
-                    $value = 'USD';
+                    $value = $this->helper->getPayPalCurrency();
                     break;
                 default:
                     break;

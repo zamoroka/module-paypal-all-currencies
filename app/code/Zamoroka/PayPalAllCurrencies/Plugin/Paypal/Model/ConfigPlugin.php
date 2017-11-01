@@ -28,7 +28,8 @@ class ConfigPlugin
     /**
      * Check whether specified currency code is supported
      *
-     * @param string $code
+     * @param \Magento\Paypal\Model\Config $config
+     * @param                              $result
      * @return bool
      */
     public function afterIsCurrencyCodeSupported(Config $config, $result)

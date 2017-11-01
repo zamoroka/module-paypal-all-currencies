@@ -9,7 +9,7 @@ use Magento\Quote\Model\QuoteRepository;
 use Psr\Log\LoggerInterface;
 use Zamoroka\PayPalAllCurrencies\Helper\Data;
 use Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory;
-use Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel\SalesModelInterface;
+use Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel\Quote as SalesModelQuote;
 
 /**
  * Class QuoteRepositoryPlugin
@@ -55,7 +55,7 @@ class QuoteRepositoryPlugin
 
     /**
      * @param \Magento\Quote\Model\QuoteRepository  $quoteRepository
-     * @param \Magento\Quote\Api\Data\CartInterface|SalesModelInterface $entity
+     * @param \Magento\Quote\Api\Data\CartInterface|SalesModelQuote $entity
      * @return array
      */
     public function beforeSave(QuoteRepository $quoteRepository, CartInterface $entity)

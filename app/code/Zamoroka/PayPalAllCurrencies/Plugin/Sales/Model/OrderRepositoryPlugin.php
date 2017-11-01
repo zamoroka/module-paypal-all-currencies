@@ -9,7 +9,7 @@ use Magento\Sales\Model\OrderRepository;
 use Psr\Log\LoggerInterface;
 use Zamoroka\PayPalAllCurrencies\Helper\Data;
 use Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory;
-use Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel\SalesModelInterface;
+use Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel\Order as SalesModelOrder;
 
 /**
  * Class OrderPlugin
@@ -55,7 +55,7 @@ class OrderRepositoryPlugin
 
     /**
      * @param \Magento\Sales\Model\OrderRepository   $orderRepository
-     * @param \Magento\Sales\Api\Data\OrderInterface|SalesModelInterface $entity
+     * @param \Magento\Sales\Api\Data\OrderInterface|SalesModelOrder $entity
      * @return array
      */
     public function beforeSave(OrderRepository $orderRepository, OrderInterface $entity)

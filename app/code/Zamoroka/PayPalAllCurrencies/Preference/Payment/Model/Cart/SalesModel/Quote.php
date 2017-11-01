@@ -6,6 +6,13 @@ use Zamoroka\PayPalAllCurrencies\Helper\Data;
 use Zamoroka\PayPalAllCurrencies\Model\CurrencyServiceFactory;
 
 /**
+ * @method float setPaypalSubtotal(float $amt)
+ * @method float setPaypalGrandTotal(float $amt)
+ * @method float setPaypalShippingAmount(float $amt)
+ * @method float setPaypalDiscountAmount(float $amt)
+ * @method float setPaypalTaxAmount(float $amt)
+ * @method float setPaypalRate(float $amt)
+ * @method string setPaypalCurrencyCode(string $code)
  * Wrapper for \Magento\Quote\Model\Quote sales model
  */
 class Quote extends \Magento\Payment\Model\Cart\SalesModel\Quote implements SalesModelInterface
@@ -36,6 +43,7 @@ class Quote extends \Magento\Payment\Model\Cart\SalesModel\Quote implements Sale
 
     /**
      * {@inheritdoc}
+     * used in Magento\Paypal\Model\Cart, function _validate()
      */
     public function getDataUsingMethod($key, $args = null)
     {

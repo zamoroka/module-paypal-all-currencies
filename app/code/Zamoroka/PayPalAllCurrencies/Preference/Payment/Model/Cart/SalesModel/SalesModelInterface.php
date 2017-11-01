@@ -5,13 +5,6 @@ namespace Zamoroka\PayPalAllCurrencies\Preference\Payment\Model\Cart\SalesModel;
 /**
  * Interface SalesModelInterface
  *
- * @method float setPaypalSubtotal(float $amt)
- * @method float setPaypalGrandTotal(float $amt)
- * @method float setPaypalShippingAmount(float $amt)
- * @method float setPaypalDiscountAmount(float $amt)
- * @method float setPaypalTaxAmount(float $amt)
- * @method float setPaypalRate(float $amt)
- * @method string setPaypalCurrencyCode(string $code)
  * @package Zamoroka\PayPalAllCurrencies\Model\Preference\Payment\Cart\SalesModel
  */
 interface SalesModelInterface

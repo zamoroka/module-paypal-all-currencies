@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <body>
+        <referenceContainer name="content">
+            <block class="Zamoroka\PayPalAllCurrencies\Block\Adminhtml\Order\Payment\Paypal"
+                   name="zamoroka_paypalallcurrencies_order_payment_paypal" template="order/payment/paypal.phtml"
+                   before="-">
+                <arguments>
+                    <argument name="zamoroka_paypalallcurrencies" xsi:type="array">
+                        <item name="doc_type" xsi:type="string" translate="false">invoice</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

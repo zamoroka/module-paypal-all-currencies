@@ -96,4 +96,13 @@ class Data extends AbstractHelper
             'paypal_express_bml'
         ];
     }
+
+    /**
+     * @param \Magento\Sales\Api\Data\OrderInterface $order
+     * @return bool
+     */
+    public function isOrderPlacedByPaypal(\Magento\Sales\Api\Data\OrderInterface $order)
+    {
+        return in_array($order->getPayment()->getMethod(), $this->getPaypalPaymentMethods());
+    }
 }

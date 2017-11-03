@@ -54,16 +54,13 @@ class OrderRepositoryPlugin
     }
 
     /**
-     * @param \Magento\Sales\Model\OrderRepository   $orderRepository
+     * @param \Magento\Sales\Model\OrderRepository                   $orderRepository
      * @param \Magento\Sales\Api\Data\OrderInterface|SalesModelOrder $entity
      * @return array
      */
     public function beforeSave(OrderRepository $orderRepository, OrderInterface $entity)
     {
-        if ($this->helper->isModuleEnabled()
-            && in_array(
-                $entity->getPayment()->getMethod(), $this->helper->getPaypalPaymentMethods()
-            )) {
+        if ($this->helper->isModuleEnabled() && $this->helper->isOrderPlacedByPaypal($entity)) {
             try {
                 foreach ($entity->getAllItems() as $item) {
                     $amt = $this->gePaypalAmtFromItem('item_price', $entity, $item);

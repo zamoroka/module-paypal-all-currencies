@@ -1,0 +1,14 @@
+<?php
+/** @var $block \Zamoroka\PayPalAllCurrencies\Block\Adminhtml\Order\Payment\Paypal */
+?>
+<script>
+    //<![CDATA[
+    require(
+        [
+            'jquery',
+            'domReady!'
+        ], function ($) {
+            $('.order-payment-currency').append('<?php echo $block->getPaypalMessage() ?>');
+        });
+    //]]>
+</script>

@@ -35,6 +35,14 @@
         <plugin name="zamoroka_paypalallcurrencies_quote_model_quoterepository_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Quote\Model\QuoteRepositoryPlugin" sortOrder="1" />
     </type>
 
+    <type name="\Magento\Sales\Helper\Admin">
+        <plugin name="zamoroka_paypalallcurrencies_sales_helper_admin_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Helper\AdminPlugin" sortOrder="1" />
+    </type>
+
+    <type name="\Magento\Sales\Block\Adminhtml\Items\AbstractItems">
+        <plugin name="zamoroka_paypalallcurrencies_sales_block_adminhtml_items_abstractitems_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Block\Adminhtml\Items\AbstractItemsPlugin" sortOrder="1" />
+    </type>
+
     <type name="\Magento\Sales\Model\OrderRepository">
         <plugin name="zamoroka_paypalallcurrencies_sales_model_orderrepository_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Model\OrderRepositoryPlugin" sortOrder="1" />
     </type>

@@ -38,6 +38,11 @@
     <type name="\Magento\Sales\Model\OrderRepository">
         <plugin name="zamoroka_paypalallcurrencies_sales_model_orderrepository_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Model\OrderRepositoryPlugin" sortOrder="1" />
     </type>
+
+     <type name="\Magento\Sales\Model\Order\Payment\State\CaptureCommand">
+        <plugin name="zamoroka_paypalallcurrencies_sales_model_order_payment_state_capturecommand_plugin"
+                type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Model\Order\Payment\State\CaptureCommandPlugin" sortOrder="1" />
+    </type>
     <!-- TODO-zamoroka: \Magento\Sales\Model\Order\Invoice -->
     <!-- TODO-zamoroka: \Magento\Sales\Model\Order\Creditmemo -->
 </config>

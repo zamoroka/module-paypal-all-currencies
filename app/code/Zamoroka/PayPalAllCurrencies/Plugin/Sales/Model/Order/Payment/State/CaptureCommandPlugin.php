@@ -72,17 +72,18 @@ class CaptureCommandPlugin
         $amount,
         OrderInterface $order
     ) {
-//        if ($order && $this->helper->isOrderPlacedByPaypal($order)) {
-        $baseCurrencyCode = $order->getBaseCurrencyCode();
+        if ($order && $this->helper->isOrderPlacedByPaypal($order)) {
+            $baseCurrencyCode = $order->getBaseCurrencyCode();
 
-        $amount = $this->getCurrencyService()->exchange($amount);
-        $order->setBaseCurrencyCode($this->helper->getPayPalCurrency());
+            $amount = $this->getCurrencyService()->exchange($amount);
+            $order->setBaseCurrencyCode($this->helper->getPayPalCurrency());
 
-        $returnValue = $proceed($payment, $amount, $order);
+            $returnValue = $proceed($payment, $amount, $order);
 
-        $order->setBaseCurrencyCode($baseCurrencyCode);
-
-//        }
+            $order->setBaseCurrencyCode($baseCurrencyCode);
+        } else {
+            $returnValue = $proceed($payment, $amount, $order);
+        }
 
         return $returnValue;
     }
@@ -97,14 +98,5 @@ class CaptureCommandPlugin
         }
 
         return $this->currencyService;
-    }
-
-    /**
-     * @param string $code
-     * @return \Magento\Directory\Model\Currency
-     */
-    public function getCurrencyByCode($code)
-    {
-        return $this->currencyFactory->create()->load($code);
     }
 }

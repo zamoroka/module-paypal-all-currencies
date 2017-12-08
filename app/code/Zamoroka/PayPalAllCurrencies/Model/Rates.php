@@ -8,6 +8,7 @@ use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Registry;
 use Magento\Framework\Stdlib\DateTime\DateTime;
+use Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface;
 
 /**
  * Class Rates
@@ -59,7 +60,7 @@ class Rates extends AbstractModel
      * @param \Zamoroka\PayPalAllCurrencies\Model\CurrencyService\CurrencyServiceInterface $currencyService
      * @return $this
      */
-    public function updateRateFromService($currencyService)
+    public function updateRateFromService(CurrencyServiceInterface $currencyService)
     {
         $baseCurrencyCode = $currencyService->getStoreCurrencyCode();
         $paypalCurrencyCode = $currencyService->getPayPalCurrencyCode();

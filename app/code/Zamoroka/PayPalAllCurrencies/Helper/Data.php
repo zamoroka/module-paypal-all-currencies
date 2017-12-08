@@ -3,6 +3,7 @@
 namespace Zamoroka\PayPalAllCurrencies\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\App\Helper\Context;
@@ -101,7 +102,7 @@ class Data extends AbstractHelper
      * @param \Magento\Sales\Api\Data\OrderInterface $order
      * @return bool
      */
-    public function isOrderPlacedByPaypal(\Magento\Sales\Api\Data\OrderInterface $order)
+    public function isOrderPlacedByPaypal(OrderInterface $order)
     {
         return in_array($order->getPayment()->getMethod(), $this->getPaypalPaymentMethods());
     }

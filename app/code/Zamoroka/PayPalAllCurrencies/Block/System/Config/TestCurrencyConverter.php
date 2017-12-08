@@ -48,6 +48,6 @@ class TestCurrencyConverter extends Field
      */
     public function getAjaxUrl()
     {
-        return $this->getUrl('zamoroka_paypalallcurrencies/system_config/testcurrencyconverter');
+        return $this->getUrl('paypalallcurrencies/system_config/testcurrencyconverter');
     }
 }

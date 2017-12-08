@@ -20,37 +20,42 @@
     </type>
 
     <type name="Magento\Paypal\Model\Config">
-        <plugin name="zamoroka_paypalallcurrencies_paypal_model_config_plugin" type="Zamoroka\PayPalAllCurrencies\Plugin\Paypal\Model\ConfigPlugin" sortOrder="1" />
+        <plugin name="zamoroka_paypalallcurrencies_paypal_model_config_plugin"
+                type="Zamoroka\PayPalAllCurrencies\Plugin\Paypal\Model\ConfigPlugin" sortOrder="1" />
     </type>
 
     <type name="\Magento\Paypal\Model\Api\Nvp">
-        <plugin name="zamoroka_paypalallcurrencies_paypal_model_api_nvp_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Paypal\Model\Api\NvpPlugin" sortOrder="1" />
+        <plugin name="zamoroka_paypalallcurrencies_paypal_model_api_nvp_plugin"
+                type="\Zamoroka\PayPalAllCurrencies\Plugin\Paypal\Model\Api\NvpPlugin" sortOrder="1" />
     </type>
 
     <type name="\Magento\Config\Model\Config">
-        <plugin name="zamoroka_paypalallcurrencies_config_model_config_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Config\Model\ConfigPlugin" sortOrder="1"/>
+        <plugin name="zamoroka_paypalallcurrencies_config_model_config_plugin"
+                type="\Zamoroka\PayPalAllCurrencies\Plugin\Config\Model\ConfigPlugin" sortOrder="1"/>
     </type>
 
     <type name="\Magento\Quote\Model\QuoteRepository">
-        <plugin name="zamoroka_paypalallcurrencies_quote_model_quoterepository_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Quote\Model\QuoteRepositoryPlugin" sortOrder="1" />
+        <plugin name="zamoroka_paypalallcurrencies_quote_model_quoterepository_plugin"
+                type="\Zamoroka\PayPalAllCurrencies\Plugin\Quote\Model\QuoteRepositoryPlugin" sortOrder="1" />
     </type>
 
     <type name="\Magento\Sales\Helper\Admin">
-        <plugin name="zamoroka_paypalallcurrencies_sales_helper_admin_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Helper\AdminPlugin" sortOrder="1" />
+        <plugin name="zamoroka_paypalallcurrencies_sales_helper_admin_plugin"
+                type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Helper\AdminPlugin" sortOrder="1" />
     </type>
 
     <type name="\Magento\Sales\Block\Adminhtml\Items\AbstractItems">
-        <plugin name="zamoroka_paypalallcurrencies_sales_block_adminhtml_items_abstractitems_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Block\Adminhtml\Items\AbstractItemsPlugin" sortOrder="1" />
+        <plugin name="zamoroka_paypalallcurrencies_sales_block_adminhtml_items_abstractitems_plugin"
+                type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Block\Adminhtml\Items\AbstractItemsPlugin" sortOrder="1" />
     </type>
 
     <type name="\Magento\Sales\Model\OrderRepository">
-        <plugin name="zamoroka_paypalallcurrencies_sales_model_orderrepository_plugin" type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Model\OrderRepositoryPlugin" sortOrder="1" />
+        <plugin name="zamoroka_paypalallcurrencies_sales_model_orderrepository_plugin"
+                type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Model\OrderRepositoryPlugin" sortOrder="1" />
     </type>
 
      <type name="\Magento\Sales\Model\Order\Payment\State\CaptureCommand">
         <plugin name="zamoroka_paypalallcurrencies_sales_model_order_payment_state_capturecommand_plugin"
                 type="\Zamoroka\PayPalAllCurrencies\Plugin\Sales\Model\Order\Payment\State\CaptureCommandPlugin" sortOrder="1" />
     </type>
-    <!-- TODO-zamoroka: \Magento\Sales\Model\Order\Invoice -->
-    <!-- TODO-zamoroka: \Magento\Sales\Model\Order\Creditmemo -->
 </config>

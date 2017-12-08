@@ -22,7 +22,7 @@ Converted data stored in `'quote'`, `'quote_item'`, `'sales_order'`, `'sales_ord
 ##Settings
 Extension settings at Magento 2 admin / stores / configuration / sales / Paypal all currencies.
 
-##Developed on enviornment:
+##Developed on environment:
  - PHP 7.0.17-1
  - NGINX 1.11.10
  - MYSQL 5.6.28-76.1
